@@ -12,4 +12,12 @@ public class Merge {
   public static void mergesort(int[]data){
 
   }
+
+  private static int[] mergesortH(int data, int lo, int hi) {
+    if (lo >= hi) {
+      return data;
+    }
+    mergesortH(data, );
+    mergesortH(data, );
+  }
 }
