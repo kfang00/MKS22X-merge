@@ -13,15 +13,26 @@ public class Merge {
 
   /*sort the array from least to greatest value. This is a wrapper function*/
   public static void mergesort(int[]data){
-    Array
+    mergesortH(data, 0, data.length - 1);
 
   }
 
-  private static void mergesortH(int data, int lo, int hi) {
+  private static void mergesortH(int[] data, int lo, int hi) {
     if (lo >= hi) {
-      return data;
+      //merge(data, 0, data.length - 1);
+      return;
     }
-    mergesortH(data, (e + s) / 2. hi);
-    mergesortH(data, lo, ((e + s) / 2) - 1);
+    mergesortH(data, ((hi + lo) / 2), hi);
+    mergesortH(data, lo, ((hi + lo) / 2) - 1);
+  }
+
+  //private static void merge(int data, int lo, int hi) {
+
+  //}
+
+  public static void main(String[] args){
+    int[] data1 = {10, 80, 30, 90, 40, 50, 70};
+    Merge.mergesort(data1);
+    System.out.println(data1);
   }
 }
