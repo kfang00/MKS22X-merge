@@ -19,10 +19,10 @@ public class Merge {
 	    idx = a - 1;
 	    while ((idx >= start) && (hold < ary[idx])) {
 		    hold1 = ary[idx];
-		    ary[idx + 1] = hold1; 
+		    ary[idx + 1] = hold1;
 		    idx = idx - 1;
 	    }
-	    ary[idx + 1] = hold;	
+	    ary[idx + 1] = hold;
 	    //System.out.println(printArray(ary));
 	}
     }
@@ -91,7 +91,7 @@ public class Merge {
    //}
    //System.out.println(toString(data, 0, data.length - 1));
    }
-    
+
   }
 
   /*private static void mergesortH(int[] data, int lo, int hi) {
@@ -119,7 +119,7 @@ public class Merge {
   }
 
 
- 
+
  //Sort testing code
   private static final int INCREASE = 0;
   private static final int DECREASE = 1;
@@ -170,33 +170,67 @@ public class Merge {
     }
     return ans;
   }
-/*
-  public static void main(String[]args){
-    int[]da = {34,5,75,4,678,45,86,45,7856,4,64,585,68,45,75,68,5, 23,43,56,57,467,3,45,2,4,23,4,23,4,2,3344,2,334,2,2334,4,233,88,23,4,234,23,4,2,2};
-    Merge.mergesort(da);
-    System.out.println(toString(da, 0, da.length - 1));
-    if(args.length < 2)return;
-    
-    int size =  Integer.parseInt(args[0]);
-    int type =   Integer.parseInt(args[1]);
 
-    int [] start = makeArray(size,type);
-    int [] result = Arrays.copyOf(start,start.length);
-    Arrays.sort(result);
-    
-    long startTime = System.currentTimeMillis();
-    ///*
-    // * Test your sort here //yoursort(start);
-    // * Add code to switch which sort is tested by changing one of the args!
-    // 
-    Merge.mergesort(start);
-    //System.out.println(toString(start, 0, start.length - 1));
-    long elapsedTime = System.currentTimeMillis() - startTime;
-    if(Arrays.equals(start,result)){
-      System.out.println("PASS Case "+name(type)+"\t array, size:"+start.length+"\t"+elapsedTime/1000.0+"sec ");
-    }else{
-      System.out.println("FAIL ! ERROR ! "+name(type)+" array, size:"+size+"  ERROR!");
-    }
-  }
-*/
+  // public static void main(String[]args){
+  //   //int[]da = {34,5,75,4,678,45,86,45,7856,4,64,585,68,45,75,68,5, 23,43,56,57,467,3,45,2,4,23,4,23,4,2,3344,2,334,2,2334,4,233,88,23,4,234,23,4,2,2};
+  //   //Merge.mergesort(da);
+  //   //System.out.println(toString(da, 0, da.length - 1));
+  //   if(args.length < 2)return;
+  //
+  //   int size =  Integer.parseInt(args[0]);
+  //   int type =   Integer.parseInt(args[1]);
+  //
+  //   int [] start = makeArray(size,type);
+  //   int [] result = Arrays.copyOf(start,start.length);
+  //   Arrays.sort(result);
+  //
+  //   long startTime = System.currentTimeMillis();
+  //   ///*
+  //   // * Test your sort here //yoursort(start);
+  //   // * Add code to switch which sort is tested by changing one of the args!
+  //   //
+  //   Merge.mergesort(start);
+  //   //System.out.println(toString(start, 0, start.length - 1));
+  //   long elapsedTime = System.currentTimeMillis() - startTime;
+  //   if(Arrays.equals(start,result)){
+  //     System.out.println("PASS Case "+name(type)+"\t array, size:"+start.length+"\t"+elapsedTime/1000.0+"sec ");
+  //   }else{
+  //     System.out.println("FAIL ! ERROR ! "+name(type)+" array, size:"+size+"  ERROR!");
+  //   }
+  // }
+
+  public static void main(String[]args){
+     System.out.println("Size\t\tMax Value\tmerge /builtin ratio ");
+     int[]MAX_LIST = {1000000000,500,10};
+     for(int MAX : MAX_LIST){
+       for(int size = 31250; size < 2000001; size*=2){
+         long qtime=0;
+         long btime=0;
+         //average of 5 sorts.
+         for(int trial = 0 ; trial <=5; trial++){
+           int []data1 = new int[size];
+           int []data2 = new int[size];
+           for(int i = 0; i < data1.length; i++){
+             data1[i] = (int)(Math.random()*MAX);
+             data2[i] = data1[i];
+           }
+           long t1,t2;
+           t1 = System.currentTimeMillis();
+           Merge.mergesort(data2);
+           t2 = System.currentTimeMillis();
+           qtime += t2 - t1;
+           t1 = System.currentTimeMillis();
+           Arrays.sort(data1);
+           t2 = System.currentTimeMillis();
+           btime+= t2 - t1;
+           if(!Arrays.equals(data1,data2)){
+             System.out.println("FAIL TO SORT!");
+             System.exit(0);
+           }
+         }
+         System.out.println(size +"\t\t"+MAX+"\t"+1.0*qtime/btime);
+       }
+       System.out.println();
+     }
+ }
 }
