@@ -22,13 +22,49 @@ public class Merge {
       //merge(data, 0, data.length - 1);
       return;
     }
-    mergesortH(data, ((hi + lo) / 2), hi);
-    mergesortH(data, lo, ((hi + lo) / 2) - 1);
+    int[] left = new int[(hi + lo) / 2];
+    int[] right = new int[((hi + lo) / 2) + 1];
+    for (int a = 0; a < data.length; a++) {
+      if (a <= ((hi + lo) / 2))
+        left[a] = data[a];
+      }
+      else {
+        right[a - ((hi + lo) / 2) - 1] = data[a];
+      }
+    }
+    mergesortH(left, 0, left.length - 1);
+    mergesortH(right, 0, right.length - 1);
+
+    for () {
+
+    }
+
+    
   }
+
+  /*private static void mergesortH(int[] data, int lo, int hi) {
+    if (lo >= hi) {
+      //merge(data, 0, data.length - 1);
+      return;
+    }
+    mergesortH(data, ((hi + lo) / 2) + 1, hi);
+    System.out.println(toString(data, ((hi + lo) / 2) + 1, hi));
+    mergesortH(data, lo, ((hi + lo) / 2));
+    System.out.println(toString(data, lo, ((hi + lo) / 2)));
+  }*/
+
 
   //private static void merge(int data, int lo, int hi) {
 
   //}
+
+  private static String toString(int[] data, int lo, int hi) {
+     String s = "";
+     for (int a = lo; a <= hi; a++) {
+       s += data[a] + "";
+     }
+     return s;
+  }
 
   public static void main(String[] args){
     int[] data1 = {10, 80, 30, 90, 40, 50, 70};
