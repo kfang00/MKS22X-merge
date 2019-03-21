@@ -25,7 +25,7 @@ public class Merge {
     int[] left = new int[(hi + lo) / 2];
     int[] right = new int[((hi + lo) / 2) + 1];
     for (int a = 0; a < data.length; a++) {
-      if (a <= ((hi + lo) / 2))
+      if (a <= ((hi + lo) / 2)) {
         left[a] = data[a];
       }
       else {
@@ -35,10 +35,26 @@ public class Merge {
     mergesortH(left, 0, left.length - 1);
     mergesortH(right, 0, right.length - 1);
 
-    for () {
+    int l = 0;
+    int r = 0; //keeping track of the index
+    int d = 0; //data index
+
+    while ((l < left.length) || (r < right.length)) {
+      if (left[l] <= right[r]) {
+	data[d] = left[l];
+        l++;
+        d++;
+      }
+      else if (left[l] > right[r]) {
+	data[d] = right[r];
+        r++;
+        d++;
+      }
+      //if (left[l] <= right[r]) {
+	//data[d] = left[l];
+      //}
 
     }
-
     
   }
 
