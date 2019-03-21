@@ -22,26 +22,29 @@ public class Merge {
       //merge(data, 0, data.length - 1);
       return;
     }
-    int[] left = new int[((hi + lo) / 2) + 1];
-    int[] right = new int[((hi + lo) / 2)];
+
+    int[] left = new int[data.length / 2];
+    int[] right = new int[data.length - (data.length / 2)];
     for (int a = 0; a < data.length; a++) {
       if (a <= ((hi + lo) / 2)) {
         left[a] = data[a];
-        System.out.println(toString(left, 0, a));
+        //System.out.println(toString(left, 0, a));
       }
       else {
         right[a - ((hi + lo) / 2) - 1] = data[a];
-        System.out.println(toString(right, 0, a - ((hi + lo) / 2) - 1));
+        //System.out.println(toString(right, 0, a - ((hi + lo) / 2) - 1));
       }
     }
     mergesortH(left, 0, left.length - 1);
+    System.out.println(toString(data, 0, data.length - 1));
     mergesortH(right, 0, right.length - 1);
+    System.out.println(toString(data, 0, data.length - 1));
 
     int l = 0;
     int r = 0; //keeping track of the index
     int d = 0; //data index
 
-    while ((l < left.length) || (r < right.length)) {
+    while ((l < left.length) && (r < right.length)) {
       if (left[l] <= right[r]) {
 	data[d] = left[l];
         l++;
@@ -52,11 +55,21 @@ public class Merge {
         r++;
         d++;
       }
-      //if (left[l] <= right[r]) {
-	//data[d] = left[l];
-      //}
-
     }
+    if (left.length > right.length) {//if right and left are different lengths
+      while (l < left.length) {
+        data[d] = left[l];
+        l++;
+        d++;
+     }
+   }
+   else if (left.length < right.length) {//if right and left are different lengths
+      while (r < right.length) {
+        data[d] = right[r];
+        r++;
+        d++;
+     }
+   }
     
   }
 
@@ -79,14 +92,14 @@ public class Merge {
   private static String toString(int[] data, int lo, int hi) {
      String s = "";
      for (int a = lo; a <= hi; a++) {
-       s += data[a] + "";
+       s += data[a] + " ";
      }
      return s;
   }
 
   public static void main(String[] args){
-    int[] data1 = {10, 80, 30, 90, 40, 50, 70};
+    int[] data1 = {1, 2, 3, 5, 6, 7};
     Merge.mergesort(data1);
-    System.out.println(data1);
+    System.out.println(toString(data1, 0, data1.length - 1));
   }
 }
