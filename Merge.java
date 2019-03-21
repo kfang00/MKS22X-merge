@@ -10,6 +10,22 @@ public class Merge {
     mergesort right side
     merge*/
 
+  private static void insertionSort(int[] ary, int start, int end) {
+	int hold = 0;
+	int idx = start;
+	int hold1 = 0;
+	for (int a = start + 1; a < end + 1; a++) {
+	    hold = ary[a];
+	    idx = a - 1;
+	    while ((idx >= start) && (hold < ary[idx])) {
+		    hold1 = ary[idx];
+		    ary[idx + 1] = hold1; 
+		    idx = idx - 1;
+	    }
+	    ary[idx + 1] = hold;	
+	    //System.out.println(printArray(ary));
+	}
+    }
 
   /*sort the array from least to greatest value. This is a wrapper function*/
   public static void mergesort(int[]data){
@@ -22,7 +38,10 @@ public class Merge {
       //merge(data, 0, data.length - 1);
       return;
     }
-
+    if (data.length < 50) {
+      insertionSort(data, lo, hi);
+    }
+    else {
     int[] left = new int[(data.length / 2)];
     int[] right = new int[data.length - (data.length / 2) ];
     for (int a = 0; a < data.length; a++) {
@@ -71,6 +90,7 @@ public class Merge {
      }
    //}
    //System.out.println(toString(data, 0, data.length - 1));
+   }
     
   }
 
