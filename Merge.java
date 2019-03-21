@@ -22,14 +22,16 @@ public class Merge {
       //merge(data, 0, data.length - 1);
       return;
     }
-    int[] left = new int[(hi + lo) / 2];
-    int[] right = new int[((hi + lo) / 2) + 1];
+    int[] left = new int[((hi + lo) / 2) + 1];
+    int[] right = new int[((hi + lo) / 2)];
     for (int a = 0; a < data.length; a++) {
       if (a <= ((hi + lo) / 2)) {
         left[a] = data[a];
+        System.out.println(toString(left, 0, a));
       }
       else {
         right[a - ((hi + lo) / 2) - 1] = data[a];
+        System.out.println(toString(right, 0, a - ((hi + lo) / 2) - 1));
       }
     }
     mergesortH(left, 0, left.length - 1);
