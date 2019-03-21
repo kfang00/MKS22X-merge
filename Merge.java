@@ -47,11 +47,11 @@ public class Merge {
     for (int a = 0; a < data.length; a++) {
       if (a < (data.length / 2)) {
         left[a] = data[a];
-        System.out.println(toString(left, 0, a));
+        //System.out.println(toString(left, 0, a));
       }
       else {
         right[a - (data.length / 2)  ] = data[a];
-        System.out.println(toString(right, 0, a - ((data.length) / 2) ));
+        //System.out.println(toString(right, 0, a - ((data.length) / 2) ));
       }
     }
     mergesortH(left, 0, left.length - 1);
@@ -170,8 +170,11 @@ public class Merge {
     }
     return ans;
   }
-
+/*
   public static void main(String[]args){
+    int[]da = {34,5,75,4,678,45,86,45,7856,4,64,585,68,45,75,68,5, 23,43,56,57,467,3,45,2,4,23,4,23,4,2,3344,2,334,2,2334,4,233,88,23,4,234,23,4,2,2};
+    Merge.mergesort(da);
+    System.out.println(toString(da, 0, da.length - 1));
     if(args.length < 2)return;
     
     int size =  Integer.parseInt(args[0]);
@@ -185,8 +188,9 @@ public class Merge {
     ///*
     // * Test your sort here //yoursort(start);
     // * Add code to switch which sort is tested by changing one of the args!
-    // */
+    // 
     Merge.mergesort(start);
+    //System.out.println(toString(start, 0, start.length - 1));
     long elapsedTime = System.currentTimeMillis() - startTime;
     if(Arrays.equals(start,result)){
       System.out.println("PASS Case "+name(type)+"\t array, size:"+start.length+"\t"+elapsedTime/1000.0+"sec ");
@@ -194,4 +198,5 @@ public class Merge {
       System.out.println("FAIL ! ERROR ! "+name(type)+" array, size:"+size+"  ERROR!");
     }
   }
+*/
 }
